@@ -14,16 +14,12 @@ int main(int argc, char **argv)
     float circleX = 200;
     float circleY = 200;
     float circleRadius = 32;
-    float pointX;
-    float pointY;
     TPixel color;
 
     screen = tigrWindow(640, 480, "Tzing AABB to AABB test", TIGR_FIXED);
     
     while (!quit) {
         tigrMouse(screen, &mouseX, &mouseY, &mouseButtons);
-        pointX = mouseX;
-        pointY = mouseY;
         
         if (tigrKeyDown(screen, TK_ESCAPE)) {
             quit = true;
@@ -50,7 +46,7 @@ int main(int argc, char **argv)
                 circleRadius++;
         }
         
-        if (Tzing_PointToCircle(pointX, pointY, circleX, circleY, circleRadius))
+        if (Tzing_PointToCircle(mouseX, mouseY, circleX, circleY, circleRadius))
             color = tigrRGB(0x88, 0x00, 0x00);
         else
             color = tigrRGB(0x00, 0x88, 0x00);
