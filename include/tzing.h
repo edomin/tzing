@@ -11,5 +11,8 @@
 bool Tzing_AabbToAabb(float aabb1_x1, float aabb1_y1, float aabb1_x2, 
  float aabb1_y2, float aabb2_x1, float aabb2_y1, float aabb2_x2, 
  float aabb2_y2);
+ 
+bool Tzing_PointToCircle(float pointX, float pointY, float circleCenterX, 
+ float circleCenterY, float circleRadius);
 
 #endif
