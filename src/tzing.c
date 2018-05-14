@@ -12,6 +12,15 @@ bool Tzing_AabbToAabb(float aabb1_x1, float aabb1_y1, float aabb1_x2,
     return false;
 }
 
+bool Tzing_PointToAabb(float pointX, float pointY, float aabb_x1, float aabb_y1,
+ float aabb_x2, float aabb_y2)
+{
+    return (pointX >= aabb_x1 && 
+     pointX <= aabb_x2 && 
+     pointY >= aabb_y1 && 
+     pointY <= aabb_y2);
+}
+
 bool Tzing_PointToCircle(float pointX, float pointY, float circleCenterX, 
  float circleCenterY, float circleRadius)
 {
@@ -19,6 +28,7 @@ bool Tzing_PointToCircle(float pointX, float pointY, float circleCenterX,
      tzing_Min(pointX, circleCenterX);
     float yOffset = tzing_Max(pointY, circleCenterY) - 
      tzing_Min(pointY, circleCenterY);
+    /* Square of hypotenuse */
     float hypot_sq = xOffset * xOffset + yOffset * yOffset;
     
     if (hypot_sq < circleRadius * circleRadius)
