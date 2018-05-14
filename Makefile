@@ -1,17 +1,27 @@
+RELEASE = no
 CC = gcc
 LD = gcc
 AR = ar
-CFLAGS = -O0 -ggdb3 -fvar-tracking -Wall -Wextra -Wno-unused-parameter \
- -Wshadow -Werror -I./include -I./samples -I./samples/tigr
+ifeq($(RELEASE), yes)
+    CFLAGS = -O2 -Wall -Wextra -Wno-unused-parameter \
+     -Wshadow -Werror -I./include -I./samples -I./samples/tigr
+else
+    CFLAGS = -O0 -ggdb3 -fvar-tracking -Wall -Wextra -Wno-unused-parameter \
+     -Wshadow -Werror -I./include -I./samples -I./samples/tigr
+endif
 LDFLAGS = -L./lib -L./samples/tigr -mwindows
 LIBS = -ltzing -ltigr -ld3d9
 ARFLAGS = rcs
 
 .PHONY: all
 
-all: prebuild lib/libtzing.a bin/AabbToAabb.exe bin/PointToAabb.exe \
+ifeq($(RELEASE), yes)
+    all: prebuild lib/libtzing.a
+else
+    all: prebuild lib/libtzing.a bin/AabbToAabb.exe bin/PointToAabb.exe \
  bin/PointToCircle.exe
-
+endif
+ 
 # Library
 
 lib/libtzing.a: obj/tzing.o
