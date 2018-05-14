@@ -1,3 +1,5 @@
 bin/
 lib/
 obj/
+samples/tigr/tigr.o
+samples/tigr/libtigr.a
