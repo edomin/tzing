@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     float circleRadius = 32;
     TPixel color;
 
-    screen = tigrWindow(640, 480, "Tzing AABB to AABB test", TIGR_FIXED);
+    screen = tigrWindow(640, 480, "Tzing point to circle test", TIGR_FIXED);
     
     while (!quit) {
         tigrMouse(screen, &mouseX, &mouseY, &mouseButtons);
