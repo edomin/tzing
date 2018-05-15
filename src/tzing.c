@@ -15,10 +15,10 @@ bool Tzing_AabbToAabb(float aabb1_x1, float aabb1_y1, float aabb1_x2,
 bool Tzing_PointToAabb(float pointX, float pointY, float aabb_x1, float aabb_y1,
  float aabb_x2, float aabb_y2)
 {
-    return (pointX >= aabb_x1 && 
-     pointX <= aabb_x2 && 
-     pointY >= aabb_y1 && 
-     pointY <= aabb_y2);
+    return (pointX > aabb_x1 && 
+     pointX < aabb_x2 && 
+     pointY > aabb_y1 && 
+     pointY < aabb_y2);
 }
 
 bool Tzing_PointToCircle(float pointX, float pointY, float circleCenterX, 
