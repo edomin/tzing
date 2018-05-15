@@ -70,9 +70,9 @@ int main(int argc, char **argv)
          circle2_radius, circle1_x, circle1_y, circle1_radius, 
          &penetrationAngle, &penetrationDepth);
         if (collision) {
-            circle1_x += penetrationDepth / 2 * cosf((float)M_PI - 
+            circle1_x += penetrationDepth * cosf((float)M_PI - 
              penetrationAngle * SAMPLE_DEGREE);
-            circle1_y += penetrationDepth / 2 * sinf((float)M_PI - 
+            circle1_y += penetrationDepth * sinf((float)M_PI - 
              penetrationAngle * SAMPLE_DEGREE);
             color = tigrRGB(0x88, 0x00, 0x00);
         }
