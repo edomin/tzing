@@ -22,4 +22,13 @@ bool Tzing_CircleToCircle(float circle1_centerX, float circle1_centerY,
  float circle1_radius, float circle2_centerX, float circle2_centerY, 
  float circle2_radius);
  
+bool Tzing_CircleToCircleCollisionPoint(float circle1_centerX, 
+ float circle1_centerY, float circle1_radius, float circle2_centerX, 
+ float circle2_centerY, float circle2_radius, float *collisionPointX, 
+ float *collisionPointY);
+ 
+bool Tzing_CircleToCirclePenetration(float circle1_centerX, 
+ float circle1_centerY, float circle1_radius, float circle2_centerX, 
+ float circle2_centerY, float circle2_radius, float *angle, float *depth);
+ 
 #endif

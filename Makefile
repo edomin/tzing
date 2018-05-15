@@ -19,7 +19,8 @@ ifeq ($(RELEASE), yes)
     all: prebuild lib/libtzing.a
 else
     all: prebuild lib/libtzing.a bin/AabbToAabb.exe bin/PointToAabb.exe \
- bin/PointToCircle.exe bin/CircleToCircle.exe
+ bin/PointToCircle.exe bin/CircleToCircle.exe \
+ bin/CircleToCircleCollisionPoint.exe bin/CircleToCirclePenetration.exe
 endif
  
 # Library
@@ -60,6 +61,16 @@ bin/CircleToCircle.exe: lib/libtzing.a obj/CircleToCircle.o obj/DrawCircle.o \
  samples/tigr/libtigr.a
 	$(LD) $(LDFLAGS) -o bin/CircleToCircle.exe obj/CircleToCircle.o \
      obj/DrawCircle.o $(LIBS)
+    
+bin/CircleToCircleCollisionPoint.exe: lib/libtzing.a \
+ obj/CircleToCircleCollisionPoint.o obj/DrawCircle.o samples/tigr/libtigr.a
+	$(LD) $(LDFLAGS) -o bin/CircleToCircleCollisionPoint.exe \
+     obj/CircleToCircleCollisionPoint.o obj/DrawCircle.o $(LIBS)
+    
+bin/CircleToCirclePenetration.exe: lib/libtzing.a \
+ obj/CircleToCirclePenetration.o obj/DrawCircle.o samples/tigr/libtigr.a
+	$(LD) $(LDFLAGS) -o bin/CircleToCirclePenetration.exe \
+     obj/CircleToCirclePenetration.o obj/DrawCircle.o $(LIBS)
 
 obj/AabbToAabb.o: src/tzing.c src/tzing_internal.h include/tzing.h \
  samples/AabbToAabb.c 
@@ -76,6 +87,17 @@ obj/PointToCircle.o: src/tzing.c src/tzing_internal.h include/tzing.h \
 obj/CircleToCircle.o: src/tzing.c src/tzing_internal.h include/tzing.h \
  samples/CircleToCircle.c samples/DrawCircle.h
 	$(CC) $(CFLAGS) -o obj/CircleToCircle.o -c samples/CircleToCircle.c
+    
+obj/CircleToCircleCollisionPoint.o: src/tzing.c src/tzing_internal.h \
+ include/tzing.h samples/CircleToCircleCollisionPoint.c samples/DrawCircle.h
+	$(CC) $(CFLAGS) -o obj/CircleToCircleCollisionPoint.o -c \
+     samples/CircleToCircleCollisionPoint.c
+    
+obj/CircleToCirclePenetration.o: src/tzing.c src/tzing_internal.h \
+ include/tzing.h samples/CircleToCirclePenetration.c samples/DrawCircle.h \
+ samples/Common.h
+	$(CC) $(CFLAGS) -o obj/CircleToCirclePenetration.o -c \
+     samples/CircleToCirclePenetration.c
     
 prebuild:
 	-mkdir obj
