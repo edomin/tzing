@@ -1,5 +1,14 @@
+2D collision detection library
+
 WIP
+
 TODO description
+
+Building:
+* Build release without sample programs:
+    $ make RELEASE=yes
+* Build debug with sample programs:
+    $ make
 
 tigr library needed for samples only.
 
