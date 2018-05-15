@@ -2,7 +2,7 @@ RELEASE = no
 CC = gcc
 LD = gcc
 AR = ar
-ifeq($(RELEASE), yes)
+ifeq ($(RELEASE), yes)
     CFLAGS = -O2 -Wall -Wextra -Wno-unused-parameter \
      -Wshadow -Werror -I./include -I./samples -I./samples/tigr
 else
@@ -15,11 +15,11 @@ ARFLAGS = rcs
 
 .PHONY: all
 
-ifeq($(RELEASE), yes)
+ifeq ($(RELEASE), yes)
     all: prebuild lib/libtzing.a
 else
     all: prebuild lib/libtzing.a bin/AabbToAabb.exe bin/PointToAabb.exe \
- bin/PointToCircle.exe
+ bin/PointToCircle.exe bin/CircleToCircle.exe
 endif
  
 # Library
@@ -55,6 +55,11 @@ bin/PointToCircle.exe: lib/libtzing.a obj/PointToCircle.o obj/DrawCircle.o \
  samples/tigr/libtigr.a
 	$(LD) $(LDFLAGS) -o bin/PointToCircle.exe obj/PointToCircle.o \
      obj/DrawCircle.o $(LIBS)
+    
+bin/CircleToCircle.exe: lib/libtzing.a obj/CircleToCircle.o obj/DrawCircle.o \
+ samples/tigr/libtigr.a
+	$(LD) $(LDFLAGS) -o bin/CircleToCircle.exe obj/CircleToCircle.o \
+     obj/DrawCircle.o $(LIBS)
 
 obj/AabbToAabb.o: src/tzing.c src/tzing_internal.h include/tzing.h \
  samples/AabbToAabb.c 
@@ -67,6 +72,10 @@ obj/PointToAabb.o: src/tzing.c src/tzing_internal.h include/tzing.h \
 obj/PointToCircle.o: src/tzing.c src/tzing_internal.h include/tzing.h \
  samples/PointToCircle.c samples/DrawCircle.h
 	$(CC) $(CFLAGS) -o obj/PointToCircle.o -c samples/PointToCircle.c
+    
+obj/CircleToCircle.o: src/tzing.c src/tzing_internal.h include/tzing.h \
+ samples/CircleToCircle.c samples/DrawCircle.h
+	$(CC) $(CFLAGS) -o obj/CircleToCircle.o -c samples/CircleToCircle.c
     
 prebuild:
 	-mkdir obj
