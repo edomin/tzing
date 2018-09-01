@@ -12,6 +12,25 @@ bool Tzing_AabbToAabb(float aabb1_x1, float aabb1_y1, float aabb1_x2,
     return false;
 }
 
+bool Tzing_AabbToAabbPenetration(float aabb1_x1, float aabb1_y1, float aabb1_x2, 
+ float aabb1_y2, float aabb2_x1, float aabb2_y1, float aabb2_x2, float aabb2_y2, 
+ float *angle, float *depth)
+{
+    float aabb1_centerX;
+    float aabb1_centerY;
+    float aabb2_centerX;
+    float aabb2_centerY;
+    
+    if (aabb1_x1 < aabb2_x2 && 
+     aabb1_x2 > aabb2_x1 &&
+     aabb1_y1 < aabb2_y2 && 
+     aabb1_y2 > aabb2_y1) {
+        
+    }
+        
+    return false;
+}
+
 bool Tzing_PointToAabb(float pointX, float pointY, float aabb_x1, float aabb_y1,
  float aabb_x2, float aabb_y2)
 {
@@ -125,7 +144,8 @@ bool Tzing_CircleToCirclePenetration(float circle1_centerX,
             opposite = circle1_centerY - circle2_centerY;
             adjacent = circle1_centerX - circle2_centerX;
             if (adjacent > 0)
-                *angle = (TZING_2PI - atanf(opposite / adjacent)) * TZING_RADIAN;
+                *angle = (TZING_2PI - atanf(opposite / adjacent)) * 
+                 TZING_RADIAN;
             else
                 *angle = (M_PI - atanf(opposite / adjacent)) * TZING_RADIAN;
             
